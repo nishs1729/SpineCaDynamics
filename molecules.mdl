@@ -1,0 +1,185 @@
+DEFINE_MOLECULES
+{
+  // Ca
+  ca
+  {
+    DIFFUSION_CONSTANT_3D = 2.2e-06
+  }
+
+  // Immobile CBP
+  immo_cbp
+  {
+    DIFFUSION_CONSTANT_3D = 0
+  }
+  ca.immo_cbp
+  {
+    DIFFUSION_CONSTANT_3D = 0
+  }
+
+  // Calbindin Medium(m) High(h)
+  calb
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m1
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m2
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.h1
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.h2
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m1.h1
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m2.h1
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m1.h2
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+  ca.calb.m2.h2
+  {
+    DIFFUSION_CONSTANT_3D = 2.8e-07 CUSTOM_SPACE_STEP = 0.100 TARGET_ONLY
+  }
+
+  // Calmodulin (CaM) N-Terminal(N) C-Terminal(C)
+/*  CaM0
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM1N
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM1C
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM2N
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM2C
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM1N1C
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM2N1C
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM1N2C
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }
+  CaM4
+  {
+    DIFFUSION_CONSTANT_3D = 2e-07
+  }*/
+
+  // PMCA
+  pmca
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  ca.pmca
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+
+  // NCX
+  ncx
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  ca.ncx
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+
+  // VDCC States
+  vdcc_c0
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  vdcc_c1
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  vdcc_c2
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  vdcc_c3
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  vdcc_open
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+
+  // NMDAR 
+  nmdar_c0b
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_c1b
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_c2b
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_db
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_ob
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_open
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_c2
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_d
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_c1
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+  nmdar_c0
+  {
+    DIFFUSION_CONSTANT_2D = 0
+  }
+
+  // Glutamate
+  glu
+  {
+    DIFFUSION_CONSTANT_3D = 0
+  }
+}
+

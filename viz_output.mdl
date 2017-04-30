@@ -1,0 +1,11 @@
+VIZ_OUTPUT
+{
+  MODE = CELLBLENDER
+  FILENAME = "./viz_data/seed_" & seed & "/Scene"
+  MOLECULES
+  {
+    NAME_LIST {ca}
+    ITERATION_NUMBERS {ALL_DATA @ [[0 TO 10000 STEP 100]]}
+  }
+}
+

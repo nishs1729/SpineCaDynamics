@@ -1,0 +1,41 @@
+output_location="/data/test/"
+
+sprintf(delay_ms,"%02g",delay*1000)
+
+sim = "offset_time_" & delay_ms
+
+REACTION_DATA_OUTPUT
+{
+  OUTPUT_BUFFER_SIZE=100
+  STEP=1e-05
+  HEADER="#"
+
+  {COUNT[ca,Dendrite.Spine]/(6.022*1.45e07) : "ca"} => output_location & sim & "/seed_" & seed & "/ca.Spine.dat"
+ 
+  {COUNT[PMCA_Leak,Dendrite.Spine] : "pmca_leak",
+   COUNT[NCX_Leak,Dendrite.Spine] : "ncx_leak",
+   COUNT[PMCA_Pump,Dendrite.Spine] : "pmca_pump",
+   COUNT[NCX_Pump,Dendrite.Spine] : "ncx_pump",
+   COUNT[VDCC_Influx,Dendrite.Spine] : "vdcc_influx",
+   COUNT[NMDAR_Influx,Dendrite.Spine] : "nmdar_influx"} => output_location & sim & "/seed_" & seed & "/flux_reactions.Spine.dat"
+
+  // Number of Ca bound to each Calbindin species
+  {COUNT[Immo_CBP,Dendrite.Spine] : "immo_cbp",
+   COUNT[CalbM1,Dendrite.Spine] : "calbm1",
+   COUNT[CalbM1H1_1,Dendrite.Spine]*2 : "calbm1h1_1",
+   COUNT[CalbM1H2_1,Dendrite.Spine]*3 : "calbm1h2_1",
+   COUNT[CalbM2,Dendrite.Spine]*2 : "calbm2",
+   COUNT[CalbM2H1_1,Dendrite.Spine]*3 : "calbm2h1_1",
+   COUNT[CalbM2H2_1,Dendrite.Spine]*4 : "calbm2h2_1",
+   COUNT[CalbH1,Dendrite.Spine] : "calbh1",
+   COUNT[CalbM1H1_2,Dendrite.Spine]*2 : "calbm1h1_2",
+   COUNT[CalbM2H1_2,Dendrite.Spine]*3 : "calbm2h1_2",
+   COUNT[CalbH2,Dendrite.Spine]*2 : "calbh2",
+   COUNT[CalbM1H2_2,Dendrite.Spine]*3 : "calbm1h2_2",
+   COUNT[CalbM2H2_2,Dendrite.Spine]*4 : "calbm2h2_2"} => output_location & sim & "/seed_" & seed & "/buffer_reactions.Spine.dat"
+
+ 
+  {COUNT[ca,Dendrite.Shaft]}=> output_location & sim & "/seed_" & seed & "/ca.Shaft.dat"
+}
+
+

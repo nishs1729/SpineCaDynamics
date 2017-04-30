@@ -1,0 +1,228 @@
+/*	
+	MCell Model for Calcium Dynamics in the Dendrite Spine head of CA3-CA1 Synapse
+	
+	Mekhala Kumar
+	4th year BS-MS Student
+	Computational NeuroBio Lab
+	IISER Pune
+
+*/
+
+ITERATIONS = 1000e4
+TIME_STEP = 1e-07
+
+// Delay in Glutamate Release
+delay = 0.001
+
+INCLUDE_FILE = "initialization.mdl"
+
+INCLUDE_FILE = "molecules.mdl"
+ 
+INCLUDE_FILE = "reactions.mdl"
+
+// Dimensions of Spine and Cleft taken from Keller et al. 2008, PLOS One
+INCLUDE_FILE = "geometry.mdl"
+
+DEFINE_SURFACE_CLASSES
+{
+  Confine
+  {
+    REFLECTIVE = glu'
+    REFLECTIVE = ca;
+  }
+  Diffuse
+  {
+    TRANSPARENT = ca;
+  }
+}
+
+MODIFY_SURFACE_REGIONS
+{
+  Cleft[AllFaces]
+  {
+    SURFACE_CLASS = Confine
+  }
+  Spine[NeckBase]
+  {
+    SURFACE_CLASS = Diffuse
+  }
+  Shaft[ShaftOpening]
+  {
+    SURFACE_CLASS = Diffuse
+  }
+  Shaft[ShaftSides]
+  {
+    SURFACE_CLASS = Confine
+  }
+}
+
+DEFINE_RELEASE_PATTERN Glu_BAP_Difference
+{
+  DELAY = delay
+}
+
+INSTANTIATE Dendrite OBJECT
+{
+  // Spine contains both Spine Head and Spine Neck
+  Spine OBJECT Spine {}
+
+  // Dendritic Shaft
+  Shaft OBJECT Shaft {}
+
+  //Synaptic Cleft
+  Cleft OBJECT Cleft {}
+
+
+  HeadTopNMDAR RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadTop]
+   MOLECULE = nmdar_c0b'
+   DENSITY = 150
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumeCa RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca
+   CONCENTRATION = 10e-08
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalb RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = calb
+   CONCENTRATION = 1.403e-05
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM1 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m1
+   CONCENTRATION = 6.84e-06
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM2 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m2
+   CONCENTRATION = 8.3e-07
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbH1 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.h1
+   CONCENTRATION = 11.9e-06
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbH2 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.h2
+   CONCENTRATION = 2.54e-06
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM1H1 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m1.h1
+   CONCENTRATION = 5.81e-06
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM2H1 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m2.h1
+   CONCENTRATION = 6.99e-07
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM1H2 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m1.h2
+   CONCENTRATION = 1.22e-06
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumecCalbM2H2 RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.calb.m2.h2
+   CONCENTRATION = 1.497e-07
+   RELEASE_PROBABILITY = 1
+  }
+  HeadNeckSidesPMCA RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadNeckSides]
+   MOLECULE = pmca,
+   DENSITY = 639.9
+   RELEASE_PROBABILITY = 1
+  }
+  HeadNeckSidesCaPMCA RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadNeckSides]
+   MOLECULE = ca.pmca,
+   DENSITY = 357.28
+   RELEASE_PROBABILITY = 1
+  }
+  HeadNeckSidesNCX RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadNeckSides]
+   MOLECULE = ncx,
+   DENSITY = 136.84
+   RELEASE_PROBABILITY = 1
+  }
+  HeadNeckSidesCaNCX RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadNeckSides]
+   MOLECULE = ca.ncx,
+   DENSITY = 4.59
+   RELEASE_PROBABILITY = 1
+  }
+  HeadNeckSidesVDCC RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine[HeadNeckSides]
+   MOLECULE = vdcc_c0'
+   DENSITY = 1.2
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumeCBP RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = immo_cbp
+   CONCENTRATION = 7.49e-05
+   RELEASE_PROBABILITY = 1
+  }
+  SpineVolumeCaCBP RELEASE_SITE
+  {
+   SHAPE = Dendrite.Spine
+   MOLECULE = ca.immo_cbp
+   CONCENTRATION = 3.52e-06
+   RELEASE_PROBABILITY = 1
+  }
+  BoutonGluReleaser RELEASE_SITE
+  {
+   SHAPE = CUBIC
+   LOCATION = [0.7642, 0, 0]
+   SITE_DIAMETER = 0
+   MOLECULE = glu
+   NUMBER_TO_RELEASE = 1000
+   RELEASE_PROBABILITY = 1
+   RELEASE_PATTERN = Glu_BAP_Difference
+  }
+  ShaftCa RELEASE_SITE
+  {
+   SHAPE = Dendrite.Shaft
+   MOLECULE = ca
+   CONCENTRATION = 10e-08
+   RELEASE_PROBABILITY = 1
+  }
+}
+
+sprintf(seed,"%05g",SEED)
+
+INCLUDE_FILE = "rxn_output.mdl"
+
+//INCLUDE_FILE = "viz_output.mdl"
+
+
+
