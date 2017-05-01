@@ -6,7 +6,7 @@ from collections import Counter,OrderedDict
 tmin_base = 0 # start of simulation at base voltage 
 tmax_base = 0.011 # end of base voltage and start of AP 
 tmax = 1 # end of simulation
-t_step = 1e-7 # time step 
+t_step = 1e-5 # time step 
 tau = 0.01 # decay time constant of AP
 
 peak_V = 100 # peak of the action potential in mV
