@@ -32,7 +32,7 @@ DEFINE_REACTIONS
   ca + ca.calb.m2.h1 -> ca.calb.m2.h2 [>1.1e+07] : CalbM2H2_2
   ca.calb.m2.h2 -> ca + ca.calb.m2.h1 [>5.2]
 
-  
+
   // Calmodulin Reactions
   /*ca + CaM0 <-> CaM1C [>6.8e+06, <68]
   ca + CaM1N <-> CaM1N1C [>6.8e+06, <68]
@@ -60,15 +60,15 @@ DEFINE_REACTIONS
   ncx' -> ncx' + ca, [20] : NCX_Leak
 
   // VDCC Reactions
-  vdcc_c0' -> vdcc_c1' ["vdcc_alpha_1_BAP.txt"]
-  vdcc_c1' -> vdcc_c0' ["vdcc_beta_1_BAP.txt"]
-  vdcc_c1' -> vdcc_c2' ["vdcc_alpha_2_BAP.txt"]
-  vdcc_c2' -> vdcc_c1' ["vdcc_beta_2_BAP.txt"]
-  vdcc_c2' -> vdcc_c3' ["vdcc_alpha_3_BAP.txt"]
-  vdcc_c3' -> vdcc_c2' ["vdcc_beta_3_BAP.txt"]
-  vdcc_c3' -> vdcc_open' ["vdcc_alpha_4_BAP.txt"]
-  vdcc_open' -> vdcc_c3' ["vdcc_beta_4_BAP.txt"]
-  vdcc_open' -> vdcc_open' + ca, ["vdcc_kca_BAP.txt"] : VDCC_Influx
+  vdcc_c0' -> vdcc_c1' ["rxn_rates/vdcc_alpha_1_BAP.txt"]
+  vdcc_c1' -> vdcc_c0' ["rxn_rates/vdcc_beta_1_BAP.txt"]
+  vdcc_c1' -> vdcc_c2' ["rxn_rates/vdcc_alpha_2_BAP.txt"]
+  vdcc_c2' -> vdcc_c1' ["rxn_rates/vdcc_beta_2_BAP.txt"]
+  vdcc_c2' -> vdcc_c3' ["rxn_rates/vdcc_alpha_3_BAP.txt"]
+  vdcc_c3' -> vdcc_c2' ["rxn_rates/vdcc_beta_3_BAP.txt"]
+  vdcc_c3' -> vdcc_open' ["rxn_rates/vdcc_alpha_4_BAP.txt"]
+  vdcc_open' -> vdcc_c3' ["rxn_rates/vdcc_beta_4_BAP.txt"]
+  vdcc_open' -> vdcc_open' + ca, ["rxn_rates/vdcc_kca_BAP.txt"] : VDCC_Influx
 
   // NMDA Reactions
   glu; + nmdar_c0b' -> nmdar_c1b' [2e+07]
@@ -79,9 +79,9 @@ DEFINE_REACTIONS
   nmdar_db' -> nmdar_c2b' [3.6]
   nmdar_c2b' -> nmdar_ob' [97]
   nmdar_ob' -> nmdar_c2b' [574]
-  nmdar_ob' -> nmdar_open' ["nmdar_kU_BAP.txt"]
-  nmdar_open' -> nmdar_ob' ["nmdar_kB_BAP.txt"]
-  nmdar_open' -> nmdar_open' + ca, ["nmdar_kca_BAP.txt"] : NMDAR_Influx
+  nmdar_ob' -> nmdar_open' ["rxn_rates/nmdar_kU_BAP.txt"]
+  nmdar_open' -> nmdar_ob' ["rxn_rates/nmdar_kB_BAP.txt"]
+  nmdar_open' -> nmdar_open' + ca, ["rxn_rates/nmdar_kca_BAP.txt"] : NMDAR_Influx
   nmdar_open' -> nmdar_c2' [183.2]
   nmdar_c2' -> nmdar_open' [93]
   nmdar_c2' -> nmdar_d' [16.8]
@@ -94,4 +94,3 @@ DEFINE_REACTIONS
   // Glutamate Degradataion
   glu -> NULL [1000]
 }
-
